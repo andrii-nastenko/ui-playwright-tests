@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "run": "npx playwright test",
+    "install-drivers": "npx playwright install"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.17.1"
+  }
+}
