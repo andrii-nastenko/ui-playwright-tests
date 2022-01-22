@@ -7,10 +7,11 @@ const config: PlaywrightTestConfig = {
     // headless: false,
     // viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
-    storageState: 'storageState.json'
+    storageState: 'fixtures/storageState.json'
     // screenshot: 'only-on-failure',
     // video: "on-first-retry"
   },
+  // reporter: [['html', { open: 'always' }]],
   projects: [
     {
       name: 'chromium',

@@ -1,5 +1,4 @@
 node_modules
 .idea
 .vscode
-storageState.json
-.env.stage
+playwright-report

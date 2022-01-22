@@ -4,9 +4,9 @@ import { TopHeader } from '../pageObjects/top-header';
 import { actions } from '../helpers/common-actions';
 
 test.describe('Wish list:', () => {
-  test.use({ storageState: 'storageState.json' });
+  test.use({ storageState: 'fixtures/storageState.json' });
 
-  test('Wish list should contain PlayStation 5', async ({ page }) => {
+  test.skip('Wish list should contain PlayStation 5', async ({ page }) => {
     const header = new TopHeader(page);
     const wishList = new WishlistPage(page);
 

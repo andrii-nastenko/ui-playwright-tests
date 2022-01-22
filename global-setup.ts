@@ -1,21 +1,36 @@
-import { chromium } from '@playwright/test';
-import { AuthModal } from './pageObjects/auth-modal';
-import { TopHeader } from './pageObjects/top-header';
-import { actions } from './helpers/common-actions';
+import { request } from '@playwright/test';
+
+// Login with API
 
 async function globalSetup() {
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const requestContext = await request.newContext();
 
-  const header = new TopHeader(page);
-  const authModal = new AuthModal(page);
+  const { token } = await requestContext
+    .post(`${process.env.API}/auth/v1/auth/`, {
+      data: {
+        email: process.env.EMAIL,
+        password: process.env.PASSWORD
+      }
+    })
+    .then((body) => body.json());
 
-  await actions.goto(page);
-  await header.userBtnClick();
-  await authModal.singIn();
+  const oneTimeUrl = await requestContext
+    .get(`${process.env.API}/auth/v1/one-time-login-url/`, {
+      headers: {
+        authorization: token
+      }
+    })
+    .then((body) => body.json())
+    .then((res) => res.url.split('/').pop());
 
-  await page.context().storageState({ path: 'storageState.json' });
-  await browser.close();
+  const { loginToken } = await requestContext
+    .get(`${process.env.API}/auth/v1/tokens/onetime/${oneTimeUrl}/exchange/`)
+    .then((body) => body.json());
+
+  console.log(loginToken);
+
+  await requestContext.storageState({ path: 'fixtures/storageState.json' });
+  await requestContext.dispose();
 }
 
 export default globalSetup;
