@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test:stage": "npx env-path -p .env.stage playwright test",
+    "test:stage": "npx env-path -p .env.example playwright test",
     "lint": "eslint ./**/*.ts",
     "lint:fix": "eslint ./**/*.ts --fix",
     "format": "prettier ./**/*.{ts,json} --write",
