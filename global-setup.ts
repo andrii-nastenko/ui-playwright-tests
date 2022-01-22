@@ -1,6 +1,5 @@
 import { request } from '@playwright/test';
-
-// Login with API
+import { writeFile, existsSync, mkdirSync } from 'fs';
 
 async function globalSetup() {
   const requestContext = await request.newContext();
@@ -23,14 +22,40 @@ async function globalSetup() {
     .then((body) => body.json())
     .then((res) => res.url.split('/').pop());
 
+  //temporary loginToken
   const { loginToken } = await requestContext
     .get(`${process.env.API}/auth/v1/tokens/onetime/${oneTimeUrl}/exchange/`)
     .then((body) => body.json());
 
-  console.log(loginToken);
+  //userId
+  const { _id } = await requestContext
+    .get(`${process.env.API}/auth/v1/user/`, {
+      headers: {
+        authorization: token
+      }
+    })
+    .then((body) => body.json());
 
-  await requestContext.storageState({ path: 'fixtures/storageState.json' });
-  await requestContext.dispose();
+  const authStorageState = {
+    origins: [
+      {
+        origin: process.env.BASE_URL,
+        localStorage: [
+          {
+            name: 'Meteor.userId',
+            value: _id
+          },
+          {
+            name: 'Meteor.loginToken',
+            value: loginToken
+          }
+        ]
+      }
+    ]
+  };
+
+  if (!existsSync('fixtures')) mkdirSync('fixtures');
+  writeFile('fixtures/authStorageState.json', JSON.stringify(authStorageState), () => null);
 }
 
 export default globalSetup;
