@@ -2,12 +2,12 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   globalSetup: require.resolve('./global-setup'),
-  timeout: 10000,
+  timeout: 30000,
   use: {
     // headless: false,
     // viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
-    storageState: 'fixtures/storageState.json'
+    storageState: 'fixtures/authStorageState.json'
     // screenshot: 'only-on-failure',
     // video: "on-first-retry"
   },
