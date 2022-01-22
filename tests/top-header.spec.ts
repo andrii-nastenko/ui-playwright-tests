@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { HomePage } from '../pageObjects/home-page';
+import { Home } from '../pageObjects/home';
 import { TopHeader } from '../pageObjects/top-header';
 
 test.describe('Top header:', () => {
@@ -8,7 +8,7 @@ test.describe('Top header:', () => {
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
-    await new HomePage(page).open();
+    await new Home(page).open();
     topHeader = new TopHeader(page);
   });
 
@@ -18,5 +18,9 @@ test.describe('Top header:', () => {
 
   test('user dropdown avatar should be visible', async () => {
     await expect(topHeader.userDropdownAvatar).toBeVisible();
+  });
+
+  test('user contain search field', async () => {
+    await expect(topHeader.searchField).toBeVisible();
   });
 });

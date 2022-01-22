@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
-import { HomePage } from '../pageObjects/home-page';
+import { Home } from '../pageObjects/home';
 
 test.describe('Home page:', () => {
-  let homePage: HomePage;
+  let homePage: Home;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
-    homePage = new HomePage(page);
+    homePage = new Home(page);
     await homePage.open();
   });
 
@@ -16,6 +16,6 @@ test.describe('Home page:', () => {
   });
 
   test('user welcome dashboard should contain user name', async () => {
-    await expect(homePage.welcomeDashboard).toContainText('Andrii');
+    await expect(homePage.welcomeDashboard).toContainText('Welcome, Andrii');
   });
 });
