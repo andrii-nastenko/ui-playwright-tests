@@ -2,7 +2,10 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   globalSetup: require.resolve('./global-setup'),
-  timeout: 30000,
+  timeout: 60000,
+  expect: {
+    timeout: 60000
+  },
   use: {
     // headless: false,
     // viewport: { width: 1280, height: 720 },
