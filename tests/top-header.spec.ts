@@ -12,15 +12,11 @@ test.describe('Top header:', () => {
     topHeader = new TopHeader(page);
   });
 
-  test.afterAll(async ({ browser }) => {
-    await browser.close();
+  test('user avatar button should be visible', async () => {
+    await expect(topHeader.userAvatarBtn).toBeVisible();
   });
 
-  test('user dropdown avatar should be visible', async () => {
-    await expect(topHeader.userDropdownAvatar).toBeVisible();
-  });
-
-  test('user contain search field', async () => {
+  test('search field should be visible', async () => {
     await expect(topHeader.searchField).toBeVisible();
   });
 });
