@@ -6,6 +6,7 @@ export class CreateContent {
   readonly wikiSectionIcon: Locator;
   private titleField: Locator;
   private descriptionField: Locator;
+  private submitFieldBtn: Locator;
   private activeInput: Locator;
   private createBtn: Locator;
   private textArea: Locator;
@@ -20,6 +21,7 @@ export class CreateContent {
     this.descriptionField = page.locator(
       '[title="Click to edit"]:has-text("Add description here")'
     );
+    this.submitFieldBtn = page.locator('.gem-type-check');
     this.activeInput = page.locator('.InlineEditor__input');
     this.createBtn = page.locator('.ActionButton[title=Create]');
     this.textArea = page.locator('.fr-element.fr-view');
@@ -33,20 +35,18 @@ export class CreateContent {
 
   async fillTitle(text: string) {
     await this.titleField.click();
-    await this.activeInput.isVisible();
     await this.activeInput.fill(text);
-    await this.activeInput.press('Enter');
-    await this.activeInput.waitFor({ state: 'detached' });
+    await this.submitFieldBtn.click();
   }
 
   async fillDescription(text: string) {
     await this.descriptionField.click();
-    await this.activeInput.isVisible();
     await this.activeInput.fill(text);
+    await this.submitFieldBtn.click();
   }
 
   async createGem() {
-    await this.createBtn.click();
+    await this.createBtn.click({ delay: 1000, clickCount: 5 });
   }
 
   async fillTextArea(text: string) {
