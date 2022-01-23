@@ -11,11 +11,11 @@ test.describe('Home page:', () => {
     await homePage.open();
   });
 
-  test.afterAll(async ({ browser }) => {
-    await browser.close();
+  test('should contain recently added gem', async () => {
+    await expect(homePage.recentlyAddedGems.first()).toBeVisible();
   });
 
-  test('user welcome dashboard should contain user name', async () => {
-    await expect(homePage.welcomeDashboard).toContainText('Welcome, Andrii');
+  test('should contain action cards section', async () => {
+    await expect(homePage.actionCards).toBeVisible();
   });
 });

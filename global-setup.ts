@@ -56,6 +56,8 @@ async function globalSetup() {
 
   if (!existsSync('fixtures')) mkdirSync('fixtures');
   writeFile('fixtures/authStorageState.json', JSON.stringify(authStorageState), () => null);
+
+  await requestContext.dispose();
 }
 
 export default globalSetup;

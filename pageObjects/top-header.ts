@@ -1,23 +1,23 @@
 import { Locator, Page } from '@playwright/test';
 
 export class TopHeader {
-  readonly userDropdownAvatar: Locator;
+  readonly userAvatarBtn: Locator;
   readonly addBtn: Locator;
-  readonly createCategoryBtn: Locator;
+  readonly createContentBtn: Locator;
   readonly homeLogoBtn: Locator;
   readonly searchField: Locator;
 
   constructor(page: Page) {
-    this.userDropdownAvatar = page.locator('[data-testid=user-dropdown-avatar-action]');
-    this.addBtn = page.locator('[data-testid=add-content-button]');
-    this.createCategoryBtn = page.locator('#show-gem-dialog');
-    this.homeLogoBtn = page.locator('a.LogoBackground__home-link');
+    this.userAvatarBtn = page.locator('.UserDropdown__avatar-holder');
+    this.addBtn = page.locator('.TopHeader__add-button');
+    this.createContentBtn = page.locator('#show-gem-dialog');
+    this.homeLogoBtn = page.locator('.LogoBackground__home-link');
     this.searchField = page.locator('#Search');
   }
 
   async createContent() {
     await this.addBtn.click();
-    await this.createCategoryBtn.click();
+    await this.createContentBtn.click();
   }
 
   async clickHomeLogoBtn() {

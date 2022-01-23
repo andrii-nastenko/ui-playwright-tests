@@ -2,9 +2,9 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   globalSetup: require.resolve('./global-setup'),
-  timeout: 60000,
+  timeout: 120000,
   expect: {
-    timeout: 60000
+    timeout: 120000
   },
   use: {
     // headless: false,
@@ -15,6 +15,7 @@ const config: PlaywrightTestConfig = {
     // video: "on-first-retry"
   },
   // reporter: [['html', { open: 'always' }]],
+  retries: 0,
   projects: [
     {
       name: 'chromium',
