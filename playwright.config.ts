@@ -9,6 +9,9 @@ const config: PlaywrightTestConfig = {
   use: {
     // headless: false,
     // viewport: { width: 1280, height: 720 },
+    launchOptions: { args: ['--single-process', '--no-zygote', '--no-sandbox'] },
+    actionTimeout: 1200000,
+    navigationTimeout: 1200000,
     ignoreHTTPSErrors: true,
     storageState: 'fixtures/authStorageState.json'
     // screenshot: 'only-on-failure',
