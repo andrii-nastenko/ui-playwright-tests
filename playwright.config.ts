@@ -1,19 +1,21 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
-const config: PlaywrightTestConfig = {
-  globalSetup: require.resolve('./global-setup'),
+export default defineConfig({
+  globalSetup: require.resolve("./global-setup"),
   timeout: 120000,
   expect: {
-    timeout: 120000
+    timeout: 30000,
   },
   use: {
     // headless: false,
     // viewport: { width: 1280, height: 720 },
-    launchOptions: { args: ['--single-process', '--no-zygote', '--no-sandbox'] },
-    actionTimeout: 1200000,
-    navigationTimeout: 1200000,
+    launchOptions: {
+      args: ["--single-process", "--no-zygote", "--no-sandbox"],
+    },
+    actionTimeout: 300000,
+    navigationTimeout: 60000,
     ignoreHTTPSErrors: true,
-    storageState: 'fixtures/authStorageState.json'
+    storageState: "fixtures/authStorageState.json",
     // screenshot: 'only-on-failure',
     // video: "on-first-retry"
   },
@@ -21,9 +23,9 @@ const config: PlaywrightTestConfig = {
   retries: 0,
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
-    }
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
     // {
     //   name: "firefox",
     //   use: { ...devices["Desktop Firefox"] }
@@ -32,7 +34,5 @@ const config: PlaywrightTestConfig = {
     //   name: "webkit",
     //   use: { ...devices["Desktop Safari"] }
     // }
-  ]
-};
-
-export default config;
+  ],
+});

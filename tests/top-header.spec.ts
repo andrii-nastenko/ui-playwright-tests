@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test';
-import { Home } from '../pageObjects/home';
-import { TopHeader } from '../pageObjects/top-header';
+import { expect, test } from "@playwright/test";
+import { Home } from "../pageObjects/home";
+import { TopHeader } from "../pageObjects/top-header";
 
-test.describe('Top header:', () => {
+test.describe("Top header:", () => {
   let topHeader: TopHeader;
 
   test.beforeAll(async ({ browser }) => {
@@ -12,11 +12,11 @@ test.describe('Top header:', () => {
     topHeader = new TopHeader(page);
   });
 
-  test('user avatar button should be visible', async () => {
+  test("user avatar button should be visible", async () => {
     await expect(topHeader.userAvatarBtn).toBeVisible();
   });
 
-  test('search field should be visible', async () => {
+  test("search field should be visible", async () => {
     await expect(topHeader.searchField).toBeVisible();
   });
 });

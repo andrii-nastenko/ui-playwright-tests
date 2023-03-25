@@ -1,7 +1,7 @@
-import { expect, test } from '@playwright/test';
-import { Home } from '../pageObjects/home';
+import { expect, test } from "@playwright/test";
+import { Home } from "../pageObjects/home";
 
-test.describe('Home page:', () => {
+test.describe("Home page:", () => {
   let homePage: Home;
 
   test.beforeAll(async ({ browser }) => {
@@ -11,11 +11,11 @@ test.describe('Home page:', () => {
     await homePage.open();
   });
 
-  test('should contain recently added gem', async () => {
+  test("should contain recently added gem", async () => {
     await expect(homePage.recentlyAddedGems.first()).toBeVisible();
   });
 
-  test('should contain action cards section', async () => {
+  test("should contain action cards section", async () => {
     await expect(homePage.actionCards).toBeVisible();
   });
 });
