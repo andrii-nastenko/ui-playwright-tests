@@ -1,10 +1,10 @@
-import { request } from "@playwright/test";
-import { writeFile, existsSync, mkdirSync } from "fs";
+import {request} from '@playwright/test';
+import {writeFile, existsSync, mkdirSync} from 'fs';
 
 async function globalSetup(): Promise<void> {
   const requestContext = await request.newContext();
 
-  const { token } = await requestContext
+  const {token} = await requestContext
     .post(`${process.env.API}/auth/v1/auth/`, {
       data: {
         email: process.env.EMAIL,
@@ -19,17 +19,16 @@ async function globalSetup(): Promise<void> {
         authorization: token,
       },
     })
-
     .then(async (body) => await body.json())
-    .then((res) => res.url.split("/").pop());
+    .then((res) => res.url.split('/').pop());
 
   // temporary loginToken
-  const { loginToken } = await requestContext
+  const {loginToken} = await requestContext
     .get(`${process.env.API}/auth/v1/tokens/onetime/${oneTimeUrl}/exchange/`)
     .then(async (body) => await body.json());
 
   // userId
-  const { _id } = await requestContext
+  const {_id} = await requestContext
     .get(`${process.env.API}/auth/v1/user/`, {
       headers: {
         authorization: token,
@@ -43,11 +42,11 @@ async function globalSetup(): Promise<void> {
         origin: process.env.BASE_URL,
         localStorage: [
           {
-            name: "Meteor.userId",
+            name: 'Meteor.userId',
             value: _id,
           },
           {
-            name: "Meteor.loginToken",
+            name: 'Meteor.loginToken',
             value: loginToken,
           },
         ],
@@ -55,8 +54,8 @@ async function globalSetup(): Promise<void> {
     ],
   };
 
-  if (!existsSync("fixtures")) mkdirSync("fixtures");
-  writeFile("fixtures/authStorageState.json", JSON.stringify(authStorageState), () => null);
+  if (!existsSync('fixtures')) mkdirSync('fixtures');
+  writeFile('fixtures/authStorageState.json', JSON.stringify(authStorageState), () => null);
 
   await requestContext.dispose();
 }

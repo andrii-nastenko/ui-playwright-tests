@@ -10,7 +10,14 @@
     "pretty": true,
     "target": "ES5",
     "module": "CommonJS",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "*"
+      ]
+    }
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
