@@ -4,17 +4,19 @@
     "node": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:playwright/playwright-test"
+    "standard-with-typescript",
+    "plugin:playwright/playwright-test",
+    "plugin:json/recommended",
+    "plugin:prettier/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
+  "overrides": [],
+  "ignorePatterns": ["node_modules", "package-lock.json"],
   "parserOptions": {
-    "ecmaVersion": 2021,
-    "sourceType": "module"
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-console": "off"
+    "@typescript-eslint/restrict-template-expressions": "off"
   }
 }

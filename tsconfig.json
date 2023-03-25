@@ -9,6 +9,8 @@
     "noFallthroughCasesInSwitch": true,
     "pretty": true,
     "target": "ES5",
-    "module": "CommonJS"
-  }
+    "module": "CommonJS",
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules"]
 }
