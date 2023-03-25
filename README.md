@@ -1,1 +1,1 @@
-## UI tests with Playwright framework
+## Playwright framework

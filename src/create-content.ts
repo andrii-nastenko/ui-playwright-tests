@@ -1,4 +1,4 @@
-import { type Locator, type Page } from "@playwright/test";
+import {type Locator, type Page} from '@playwright/test';
 
 export class CreateContent {
   readonly mainSection: Locator;
@@ -14,17 +14,17 @@ export class CreateContent {
   readonly breadcrumbs: Locator;
 
   constructor(page: Page) {
-    this.mainSection = page.locator(".virtuoso-grid-list");
+    this.mainSection = page.locator('.virtuoso-grid-list');
     this.addWikiBtn = page.locator('li:has-text("Wiki Page")');
-    this.wikiSectionIcon = page.locator("img[alt=Note]");
+    this.wikiSectionIcon = page.locator('img[alt=Note]');
     this.titleField = page.locator('[title="Click to edit"]:has-text("Add title")');
     this.descriptionField = page.locator('[title="Click to edit"]:has-text("Add description here")');
-    this.submitFieldBtn = page.locator(".gem-type-check");
-    this.activeInput = page.locator(".InlineEditor__input");
-    this.createBtn = page.locator(".ActionButton[title=Create]");
-    this.textArea = page.locator(".fr-element.fr-view");
-    this.saveBtn = page.locator(".ActionButton[title=Save]");
-    this.breadcrumbs = page.locator(".Breadcrumbs");
+    this.submitFieldBtn = page.locator('.gem-type-check');
+    this.activeInput = page.locator('.InlineEditor__input');
+    this.createBtn = page.locator('.ActionButton[title=Create]');
+    this.textArea = page.locator('.fr-element.fr-view');
+    this.saveBtn = page.locator('.ActionButton[title=Save]');
+    this.breadcrumbs = page.locator('.Breadcrumbs');
   }
 
   async createWiki(): Promise<void> {
@@ -44,7 +44,7 @@ export class CreateContent {
   }
 
   async createGem(): Promise<void> {
-    await this.createBtn.click({ delay: 1000, clickCount: 5 });
+    await this.createBtn.click({delay: 1000, clickCount: 5});
   }
 
   async fillTextArea(text: string): Promise<void> {
