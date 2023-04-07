@@ -5,7 +5,7 @@
   "scripts": {
     "install-drivers": "playwright install",
     "lint:fix": "eslint ./**/*.{ts,js,json} --fix",
-    "test": "playwright test -c ./config/ui/ui.playwright.config.ts",
+    "test:ui": "playwright test -c ./config/ui.playwright.config.ts",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",

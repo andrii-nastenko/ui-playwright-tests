@@ -1,11 +1,6 @@
 import {defineConfig, devices} from '@playwright/test';
-import * as dotenv from 'dotenv';
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-dotenv.config();
+import './dotenv';
+import * as process from 'process';
 
 const rootDir = './../';
 
@@ -13,32 +8,44 @@ const rootDir = './../';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: `${rootDir}/tests`,
-  globalSetup: `${rootDir}/global-setup`,
+  testDir: `${rootDir}/tests/ui`,
+  globalSetup: `${rootDir}//setup/setup-ui.ts`,
+  globalTeardown: `${rootDir}/setup/global-teardown.ts`,
   testMatch: '**/*.spec.ts',
-  timeout: 120000,
+  /* Maximum time one test can run for. */
+  timeout: +process.env?.TEST_TIMEOUT || 60 * 1000,
   expect: {
-    timeout: 30000,
+    /**
+     * Maximum time expect() should wait for the condition to be met.
+     * For example in `await expect(locator).toHaveText();`
+     */
+    timeout: +process.env?.EXPECT_TIMEOUT || 10000,
   },
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 0 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI ? [['junit', {outputFile: `${rootDir}/test-results/results.xml`}]] : 'list',
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  outputDir: `${rootDir}/artifacts`,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
-    actionTimeout: 300000,
-    navigationTimeout: 60000,
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    permissions: ['clipboard-read', 'clipboard-write'],
+    acceptDownloads: true,
+    actionTimeout: +process.env?.ACTION_TIMEOUT || 10000,
+    navigationTimeout: +process.env?.NAVIGATION_TIMEOUT || 20000,
     ignoreHTTPSErrors: true,
   },
 
@@ -46,18 +53,25 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: {...devices['Desktop Chrome']},
+      use: {
+        headless: JSON.parse(process.env?.HEADLESS?.toLowerCase() || 'true'),
+        ...devices['Desktop Chrome'],
+        locale: 'en-GB',
+        launchOptions: {
+          args: ['--start-fullscreen'],
+        },
+      },
     },
 
-    {
-      name: 'firefox',
-      use: {...devices['Desktop Firefox']},
-    },
-
-    {
-      name: 'webkit',
-      use: {...devices['Desktop Safari']},
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {...devices['Desktop Firefox']},
+    // },
+    //
+    // {
+    //   name: 'webkit',
+    //   use: {...devices['Desktop Safari']},
+    // },
 
     /* Test against mobile viewports. */
     // {
