@@ -4,7 +4,9 @@
   "description": "tests",
   "scripts": {
     "install-drivers": "playwright install",
-    "lint:fix": "eslint ./**/*.{ts,js,json} --fix",
+    "lint:check": "eslint . --ext .js,.ts,.json --quiet",
+    "lint:fix": "eslint . --ext .js,.ts,.json --fix",
+    "prepare": "husky install",
     "test:ui": "playwright test -c ./config/ui.playwright.config.ts",
     "type-check": "tsc --noEmit"
   },
@@ -24,6 +26,7 @@
     "eslint-plugin-playwright": "^0.12.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
     "typescript": "^5.0.2"
   }
