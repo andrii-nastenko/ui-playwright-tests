@@ -27,6 +27,10 @@
   "rules": {
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-useless-constructor": "off",
+    "@typescript-eslint/consistent-indexed-object-style": "off",
     "quotes": [
       "error",
       "single"
