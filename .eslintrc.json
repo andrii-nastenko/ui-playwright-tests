@@ -31,6 +31,12 @@
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-useless-constructor": "off",
     "@typescript-eslint/consistent-indexed-object-style": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "crlf"
+      }
+    ],
     "quotes": [
       "error",
       "single"
