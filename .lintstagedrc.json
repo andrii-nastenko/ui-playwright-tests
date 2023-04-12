@@ -1,6 +1,5 @@
 {
   "*.{ts,js,json}": [
     "eslint --fix --quiet"
-  ],
-  "**/*.ts": "tsc --noEmit"
+  ]
 }

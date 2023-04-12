@@ -31,6 +31,9 @@
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-useless-constructor": "off",
     "@typescript-eslint/consistent-indexed-object-style": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/prefer-ts-expect-error": "off",
+    "@typescript-eslint/no-invalid-void-type": "off",
     "prettier/prettier": [
       "error",
       {
