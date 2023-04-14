@@ -2,7 +2,7 @@ import {expect} from '@playwright/test';
 import {HomePageActions} from 'src/ui/pages/home-page/home-page-actions';
 import {ResultsPageSelectors} from 'src/ui/pages/results-page/results-page-selectors';
 import {generateLoremWord} from 'src/helpers/generator';
-import {test} from '../../fixtures/ui-hooks';
+import {test} from 'fixtures/ui-hooks';
 
 test.describe('Perform google search:', () => {
   const homeURL = process.env.GOOGLE_URL;
@@ -33,6 +33,5 @@ test.describe('Perform google search:', () => {
     results.forEach((result) => {
       expect(result.toLowerCase()).toContain(word);
     });
-    expect(1).toEqual(2);
   });
 });

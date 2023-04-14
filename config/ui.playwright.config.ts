@@ -1,5 +1,5 @@
 import {defineConfig, devices} from '@playwright/test';
-import './dotenv';
+import 'config/dotenv';
 import * as process from 'process';
 
 const rootDir = './../';
