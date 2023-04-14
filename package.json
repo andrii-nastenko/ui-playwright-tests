@@ -6,28 +6,33 @@
     "install-drivers": "playwright install",
     "lint:check": "eslint . --ext .js,.ts,.json --quiet",
     "lint:fix": "eslint . --ext .js,.ts,.json --fix",
+    "packages:check-updates": "npm-check-updates",
+    "packages:update": "ncu -u && npm i",
     "prepare": "husky install",
     "test:ui": "playwright test -c ./config/ui.playwright.config.ts",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
-    "@playwright/test": "^1.32.0",
-    "dotenv": "^16.0.3"
+    "@playwright/test": "^1.32.3",
+    "dotenv": "^16.0.3",
+    "lodash": "^4.17.21",
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.194",
     "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "eslint": "^8.36.0",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-json-format": "^2.0.1",
-    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-playwright": "^0.12.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
-    "typescript": "^5.0.2"
+    "lint-staged": "^13.2.1",
+    "npm-check-updates": "^16.10.8"
   }
 }
