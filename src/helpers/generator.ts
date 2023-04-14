@@ -1,5 +1,5 @@
 import {faker} from '@faker-js/faker';
 
-export function generateLoremWord(length?: number): string {
-  return faker.lorem.word(length);
+export function generateString(len: number): string {
+  return faker.random.alphaNumeric(len);
 }
