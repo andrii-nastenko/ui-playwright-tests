@@ -1,7 +1,7 @@
 {
   "tabWidth": 2,
-  "printWidth": 120,
+  "printWidth": 90,
   "singleQuote": true,
   "bracketSpacing": false,
-  "endOfLine": "crlf"
+  "endOfLine": "lf"
 }

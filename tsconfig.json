@@ -1,23 +1,35 @@
 {
   "compilerOptions": {
+    "isolatedModules": true,
+    "moduleResolution": "node",
     "strict": true,
     "alwaysStrict": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
+    "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "pretty": true,
-    "target": "ES5",
+    "target": "ES6",
     "module": "CommonJS",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": "./",
+    "rootDir": "./",
     "paths": {
       "*": [
         "*"
       ]
     }
   },
+  "compileOnSave": true,
+  "include": [
+    "**/*.ts"
+  ],
   "exclude": [
-    "node_modules"
+    "**/node_modules"
   ]
 }

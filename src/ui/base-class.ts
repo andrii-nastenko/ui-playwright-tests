@@ -10,7 +10,9 @@ export class BaseClass {
   }
   locator(
     selector: string,
-    options?: {has?: Locator | undefined; hasText?: string | RegExp | undefined} | undefined
+    options?:
+      | {has?: Locator | undefined; hasText?: string | RegExp | undefined}
+      | undefined
   ): Locator {
     return this.page.locator(selector, options);
   }
