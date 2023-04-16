@@ -6,5 +6,6 @@ export class ResultsPageSelectors extends BaseClass {
     super(page);
   }
   searchResultsSection = (): Locator => this.locator('//div[@id="rso"]');
-  results = (query: string): Locator => this.locator(`//*[@data-async-context="query:${query}"]/div`);
+  results = (query: string): Locator =>
+    this.locator(`//*[@data-async-context="query:${query}"]/div`);
 }

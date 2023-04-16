@@ -24,7 +24,9 @@ export const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>
       // 'afterEach' global hook starts here
       if (test.info().status === 'failed') {
         for (const context of contexts) {
-          await context.tracing.stopChunk({path: `traces/${test.info().title}.zip`.replace(/\s/g, '_')});
+          await context.tracing.stopChunk({
+            path: `traces/${test.info().title}.zip`.replace(/\s/g, '_'),
+          });
           for (const page of context.pages()) {
             await page.screenshot({
               path: `screenshots/${test.info().title}.png`.replace(/\s/g, '_'),
