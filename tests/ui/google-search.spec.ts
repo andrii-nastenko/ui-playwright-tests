@@ -1,6 +1,6 @@
 import {expect} from '@playwright/test';
-import {HomePageActions} from 'src/ui/pages/home-page/home-page-actions';
-import {ResultsPageSelectors} from 'src/ui/pages/results-page/results-page-selectors';
+import {HomePageActions} from 'src/ui/pages/google/home-page/home-page-actions';
+import {ResultsPageSelectors} from 'src/ui/pages/google/results-page/results-page-selectors';
 import {DataGenerator} from 'src/helpers/data-generator';
 import {test} from 'fixtures/ui-hooks';
 
