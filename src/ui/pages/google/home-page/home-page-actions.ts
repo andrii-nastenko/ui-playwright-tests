@@ -1,5 +1,5 @@
 import {BaseClass} from 'src/ui/base-class';
-import {HomePageSelectors} from 'src/ui/pages/home-page/home-page-selectors';
+import {HomePageSelectors} from 'src/ui/pages/google/home-page/home-page-selectors';
 import {type Page} from '@playwright/test';
 
 export class HomePageActions extends BaseClass {
