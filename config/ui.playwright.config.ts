@@ -1,6 +1,6 @@
 import {defineConfig, devices} from '@playwright/test';
 import 'config/dotenv';
-import * as process from 'process';
+import 'config/matchers';
 
 const rootDir = './../';
 
@@ -31,7 +31,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['junit', {outputFile: `${rootDir}/test-results/results.xml`}]]
+    ? [['junit', {outputFile: `${rootDir}/test-results/results.xml`}], ['list']]
     : 'list',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */

@@ -1,7 +1,7 @@
 import {expect} from '@playwright/test';
 import {HomePageActions} from 'src/ui/pages/home-page/home-page-actions';
 import {ResultsPageSelectors} from 'src/ui/pages/results-page/results-page-selectors';
-import {generateString} from 'src/helpers/generator';
+import {DataGenerator} from 'src/helpers/data-generator';
 import {test} from 'fixtures/ui-hooks';
 
 test.describe('Perform google search:', () => {
@@ -21,7 +21,7 @@ test.describe('Perform google search:', () => {
   });
 
   test('Check google search result', async () => {
-    const word = generateString(5);
+    const word = DataGenerator.generateString(5);
     await homePageActions.enterSearchText(word);
     await homePageActions.startSearch();
 
