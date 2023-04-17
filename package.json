@@ -16,6 +16,7 @@
     "@faker-js/faker": "^7.6.0",
     "@playwright/test": "^1.32.3",
     "dotenv": "^16.0.3",
+    "jest-sorted": "^1.0.14",
     "lodash": "^4.17.21",
     "typescript": "^5.0.4"
   },
