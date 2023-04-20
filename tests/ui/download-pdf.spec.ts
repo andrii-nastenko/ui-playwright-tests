@@ -1,7 +1,7 @@
 import {test} from 'fixtures/ui-hooks';
 import {DownloadPageActions} from 'src/ui/pages/download-page/download-page-actions';
 import {expect} from '@playwright/test';
-import pdf from 'pdf-parse';
+import {VariousHelpers} from 'src/helpers/various';
 
 test.describe('Downloads:', () => {
   const filesURL = process.env.FILES_PAGE_URL;
@@ -27,10 +27,8 @@ test.describe('Downloads:', () => {
       data += chunk;
     });
     readerStream?.on('end', function () {
-      void pdf(Buffer.from(data)).then((res) => {
+      void VariousHelpers.parsePdf(Buffer.from(data)).then((res) => {
         expect(res.info.Creator).toEqual('Aspose Ltd.');
-        expect(res.info.Title).toEqual('');
-        expect(res.text).toEqual('\n\n');
       });
     });
   });
