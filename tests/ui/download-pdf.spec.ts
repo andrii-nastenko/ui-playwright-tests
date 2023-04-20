@@ -19,17 +19,9 @@ test.describe('Downloads:', () => {
   });
 
   test('Download pdf and check its content', async () => {
-    const download = await downloadPageActions.downloadFile();
-    let data: string;
-    const readerStream = await download.createReadStream();
-    readerStream?.setEncoding('utf-8');
-    readerStream?.on('data', function (chunk: string) {
-      data += chunk;
-    });
-    readerStream?.on('end', function () {
-      void VariousHelpers.parsePdf(Buffer.from(data)).then((res) => {
-        expect(res.info.Creator).toEqual('Aspose Ltd.');
-      });
-    });
+    const [, buffer] = await downloadPageActions.downloadFile();
+    const pdfContent = await VariousHelpers.parsePdf(buffer);
+
+    expect(pdfContent.text).toContain('lorem');
   });
 });
