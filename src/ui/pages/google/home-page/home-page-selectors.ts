@@ -6,5 +6,6 @@ export class HomePageSelectors extends BaseClass {
     super(page);
   }
   searchField = (): Locator => this.locator('//*[@name="q"]');
+  searchSuggestionsSection = (): Locator => this.locator('//*[@class="UUbT9"]');
   searchBtn = (): Locator => this.locator('//*[@style]//*[@value="Google Search"]');
 }

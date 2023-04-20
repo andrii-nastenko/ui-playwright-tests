@@ -4,6 +4,7 @@ import path from 'path';
 import {normalizeText} from 'normalize-text';
 import pdf from 'pdf-parse';
 import moment from 'moment';
+import {type Readable} from 'stream';
 
 class VariousHelpers {
   static wait(ms: number): Promise<void> {
@@ -23,6 +24,15 @@ class VariousHelpers {
   }
   static parsePdf(data: Buffer): Promise<pdf.Result> {
     return pdf(data);
+  }
+  static streamToBuffer(stream: Readable): Promise<Buffer> {
+    return new Promise<Buffer>((resolve) => {
+      const _buf = Array<any>();
+      stream.on('data', (chunk) => _buf.push(chunk));
+      stream.on('end', () => {
+        resolve(Buffer.concat(_buf));
+      });
+    });
   }
   static getCurrentDate(): string {
     return moment().toISOString();

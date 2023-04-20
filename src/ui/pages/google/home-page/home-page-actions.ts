@@ -9,7 +9,7 @@ export class HomePageActions extends BaseClass {
     this.homePageSelectors = new HomePageSelectors(page);
   }
   async enterSearchText(text: string): Promise<void> {
-    await this.homePageSelectors.searchField().fill(text);
+    await this.homePageSelectors.searchField().type(text);
   }
   async startSearch(): Promise<void> {
     await this.homePageSelectors.searchBtn().click();
