@@ -1,19 +1,37 @@
-import {type Locator, type Page} from '@playwright/test';
+import {type Download, type Locator, type Page} from '@playwright/test';
+import {Helpers} from 'src/helpers/helpers';
+import {type ActionType} from 'src/ui/types/base-class-types';
 
-export class BaseClass {
+class BaseClass {
   readonly page: Page;
   constructor(page: Page) {
     this.page = page;
   }
-  async goto(url: string): Promise<void> {
-    await this.page.goto(url);
+  async press(
+    action: ActionType,
+    options?: {delay?: number | undefined} | undefined
+  ): Promise<void> {
+    await this.page.keyboard.press(
+      process.env.CI ? action.replace('Meta', 'Control') : action,
+      options
+    );
   }
-  locator(
-    selector: string,
-    options?:
-      | {has?: Locator | undefined; hasText?: string | RegExp | undefined}
-      | undefined
-  ): Locator {
-    return this.page.locator(selector, options);
+  async copySelectedText(): Promise<void> {
+    await this.page.evaluate(() => window.document.execCommand('copy'));
+  }
+  /** Download file after clicking a button. Returns Download and file Buffer */
+  async downloadFile(downloadBtn: Locator): Promise<[Download, Buffer]> {
+    const [download] = await Promise.all([
+      this.page.waitForEvent('download'),
+      downloadBtn.click(),
+    ]);
+    const readerStream = await download.createReadStream();
+    if (!readerStream) {
+      throw new Error('file download failed');
+    }
+    const buffer = await Helpers.streamToBuffer(readerStream);
+    return [download, buffer];
   }
 }
+
+export {BaseClass};
