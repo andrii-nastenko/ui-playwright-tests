@@ -1,6 +1,6 @@
 import {test as base} from '@playwright/test';
 
-export const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>({
+const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>({
   sharedBeforeAll: [
     async ({}, use) => {
       // 'beforeAll' global hook starts here
@@ -43,3 +43,5 @@ export const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>
     // starts automatically for every test - we pass "auto" for that.
   ],
 });
+
+export {test};

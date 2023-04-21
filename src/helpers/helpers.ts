@@ -6,7 +6,7 @@ import pdf from 'pdf-parse';
 import moment from 'moment';
 import {type Readable} from 'stream';
 
-class VariousHelpers {
+class Helpers {
   static wait(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -34,9 +34,15 @@ class VariousHelpers {
       });
     });
   }
-  static getCurrentDate(): string {
+  static getCurrentDateISO(): string {
     return moment().toISOString();
+  }
+  static tomorrowDateFormatted(): string {
+    return moment().add(1, 'days').format('YYYY-MM-DD');
+  }
+  static yesterdayDateFormatted(): string {
+    return moment().subtract(1, 'days').format('YYYY-MM-DD');
   }
 }
 
-export {VariousHelpers};
+export {Helpers};
