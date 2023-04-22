@@ -1,22 +1,15 @@
-import {test} from 'fixtures/ui-hooks';
 import {DownloadPage} from 'src/ui/pages/groupdocs/download-page';
-import {expect, type Page} from '@playwright/test';
+import {expect} from '@playwright/test';
 import {Helpers} from 'src/helpers/helpers';
+import {test} from 'fixtures/ui-hooks';
 
 test.describe('Downloads:', () => {
   const filesURL = process.env.FILES_PAGE_URL;
-  let page: Page;
   let downloadPage: DownloadPage;
 
-  test.beforeAll(async ({browser}) => {
-    const context = await browser.newContext();
-    page = await context.newPage();
+  test.beforeEach(async ({page}) => {
     downloadPage = new DownloadPage(page);
-  });
-
-  test.beforeEach(async () => {
     await page.goto(filesURL);
-    await page.waitForLoadState('load');
   });
 
   test('Download pdf and check its content', async () => {
