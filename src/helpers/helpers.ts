@@ -1,4 +1,4 @@
-import * as os from 'os';
+import * as system from 'os';
 import fs from 'fs';
 import path from 'path';
 import {normalizeText} from 'normalize-text';
@@ -11,7 +11,10 @@ class Helpers {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   static getLocalUserName(): string {
-    return os.userInfo().username;
+    return system.userInfo().username;
+  }
+  static getOS(): NodeJS.Platform {
+    return system.platform();
   }
   static getTextFromFile(fileName: string, paths = 'assets'): string {
     return fs.readFileSync(path.resolve(paths, fileName)).toString();
@@ -34,7 +37,7 @@ class Helpers {
       });
     });
   }
-  static getCurrentDateISO(): string {
+  static getCurrentISODate(): string {
     return moment().toISOString();
   }
   static tomorrowDateFormatted(): string {
