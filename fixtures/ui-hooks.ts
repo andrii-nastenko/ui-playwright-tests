@@ -1,41 +1,28 @@
 import {test as base} from '@playwright/test';
 import {BaseClass} from 'src/ui/base-class';
 
-const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>({
-  sharedBeforeAll: [
-    async ({}, use) => {
-      // 'beforeAll' global hook starts here
-      await use();
-      // 'afterAll' global hook starts here
-    },
-    // @ts-ignore
-    {scope: 'worker', auto: true},
-    // starts automatically for every worker (spec) - we pass "auto" for that.
-  ],
-
-  sharedBeforeEach: [
+const test = base.extend<{globalHooks: void}>({
+  globalHooks: [
     async ({browser}, use) => {
       // 'beforeEach' global hook starts here
-      const contexts = browser.contexts();
-      for (const context of contexts) {
+      for (const context of browser.contexts()) {
         await context.tracing.start({screenshots: true, snapshots: true});
         await context.tracing.startChunk({title: test.info().title});
-
         for (const page of context.pages()) {
-          const baseClass = new BaseClass(page);
           // make pages load faster by skipping images and fonts downloading
-          await baseClass.stopRequest('**/*.{png,jpg,jpeg,webp,svg}');
-          await baseClass.stopRequest(/(analytics|fonts)/);
+          await new BaseClass(page).stopRequest('**/*.{png,jpg,jpeg,webp,svg,gif}');
         }
       }
       await use();
       // 'afterEach' global hook starts here
-      if (test.info().status === 'failed') {
-        for (const context of contexts) {
+      for (const context of browser.contexts()) {
+        if (test.info().status === 'failed') {
           await context.tracing.stopChunk({
             path: `traces/${test.info().title}.zip`.replace(/\s/g, '_'),
           });
-          for (const page of context.pages()) {
+        }
+        for (const page of context.pages()) {
+          if (test.info().status === 'failed') {
             await page.screenshot({
               path: `screenshots/${test.info().title}.png`.replace(/\s/g, '_'),
               fullPage: true,
@@ -43,12 +30,11 @@ const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>({
           }
         }
       }
-      for (const context of contexts) {
+      for (const context of browser.contexts()) {
         await context.tracing.stop();
       }
     },
     {scope: 'test', auto: true},
-    // starts automatically for every test - we pass "auto" for that.
   ],
 });
 

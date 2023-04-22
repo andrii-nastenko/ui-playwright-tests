@@ -2,9 +2,9 @@ import * as system from 'os';
 import fs from 'fs';
 import path from 'path';
 import {normalizeText} from 'normalize-text';
-import pdf from 'pdf-parse';
 import moment from 'moment';
 import {type Readable} from 'stream';
+import {PDFExtract, type PDFExtractResult} from 'pdf.js-extract';
 
 class Helpers {
   static wait(ms: number): Promise<void> {
@@ -25,8 +25,8 @@ class Helpers {
   static normalizeText(text: string | string[]): string {
     return normalizeText(text);
   }
-  static parsePdf(data: Buffer): Promise<pdf.Result> {
-    return pdf(data);
+  static parsePdf(data: Buffer): Promise<PDFExtractResult> {
+    return new PDFExtract().extractBuffer(data);
   }
   static streamToBuffer(stream: Readable): Promise<Buffer> {
     return new Promise<Buffer>((resolve) => {
