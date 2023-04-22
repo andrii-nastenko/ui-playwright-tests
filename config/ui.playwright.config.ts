@@ -13,13 +13,13 @@ export default defineConfig({
   globalTeardown: `${rootDir}/setup/global-teardown.ts`,
   testMatch: '**/*.spec.ts',
   /* Maximum time one test can run for. */
-  timeout: +process.env?.TEST_TIMEOUT || 60 * 1000,
+  timeout: 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: +process.env?.EXPECT_TIMEOUT || 20000,
+    timeout: 20000,
   },
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -42,8 +42,8 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
     permissions: ['clipboard-read', 'clipboard-write'],
     acceptDownloads: true,
-    actionTimeout: +process.env?.ACTION_TIMEOUT || 20000,
-    navigationTimeout: +process.env?.NAVIGATION_TIMEOUT || 20000,
+    actionTimeout: 20000,
+    navigationTimeout: 20000,
     ignoreHTTPSErrors: true,
   },
 
@@ -52,7 +52,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        headless: JSON.parse(process.env?.HEADLESS?.toLowerCase() || 'true'),
+        headless: !!process.env.CI,
         ...devices['Desktop Chrome'],
         locale: 'en-GB',
       },
