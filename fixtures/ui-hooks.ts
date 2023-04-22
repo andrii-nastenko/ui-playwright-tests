@@ -1,4 +1,5 @@
 import {test as base} from '@playwright/test';
+import {BaseClass} from 'src/ui/base-class';
 
 const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>({
   sharedBeforeAll: [
@@ -19,6 +20,13 @@ const test = base.extend<{sharedBeforeAll: void; sharedBeforeEach: void}>({
       for (const context of contexts) {
         await context.tracing.start({screenshots: true, snapshots: true});
         await context.tracing.startChunk({title: test.info().title});
+
+        for (const page of context.pages()) {
+          const baseClass = new BaseClass(page);
+          // make pages load faster by skipping images and fonts downloading
+          await baseClass.stopRequest('**/*.{png,jpg,jpeg,webp,svg}');
+          await baseClass.stopRequest(/(analytics|fonts)/);
+        }
       }
       await use();
       // 'afterEach' global hook starts here
