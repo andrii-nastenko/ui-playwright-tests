@@ -22,8 +22,10 @@ test.describe('Downloads:', () => {
   test('Download pdf and check its content', async () => {
     const downloadBtn = downloadPage.downloadBtn();
     const [, buffer] = await downloadPage.downloadFile(downloadBtn);
-    const pdfContent = await Helpers.parsePdf(buffer);
+    const pdfText = await Helpers.parsePdf(buffer).then(({pages}) =>
+      pages.map((page) => page.content.map(({str}) => str).toString()).join()
+    );
 
-    expect(pdfContent.text).toContain('lorem');
+    expect(pdfText).toContain('lorem');
   });
 });

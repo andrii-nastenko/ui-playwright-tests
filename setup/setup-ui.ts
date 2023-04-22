@@ -1,3 +1,3 @@
 export default function setup(): void {
-  console.log('setup before running tests');
+  console.log('setup before running job');
 }
