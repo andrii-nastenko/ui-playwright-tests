@@ -36,7 +36,7 @@
     "@typescript-eslint/no-invalid-void-type": "off",
     "@typescript-eslint/no-extraneous-class": "off",
     "prettier/prettier": [
-      "error",
+      "off",
       {
         "endOfLine": "auto"
       }
