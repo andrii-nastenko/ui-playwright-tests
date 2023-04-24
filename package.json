@@ -4,7 +4,7 @@
   "description": "tests",
   "scripts": {
     "install-drivers": "playwright install",
-    "lint:check": "eslint . --ext .js,.ts,.json --quiet",
+    "lint:check": "eslint . --ext .js,.ts,.json",
     "lint:fix": "eslint . --ext .js,.ts,.json --fix",
     "packages:check-updates": "npm-check-updates",
     "packages:update": "ncu -u && npm i",
@@ -25,9 +25,9 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.194",
-    "@types/node": "^18.15.13",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "eslint": "^8.38.0",
+    "@types/node": "^18.16.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-json-format": "^2.0.1",

@@ -3,5 +3,5 @@
   "printWidth": 90,
   "singleQuote": true,
   "bracketSpacing": false,
-  "endOfLine": "auto"
+  "endOfLine": "lf"
 }
