@@ -17,6 +17,7 @@
     "@playwright/test": "^1.32.3",
     "dotenv": "^16.0.3",
     "jest-sorted": "^1.0.14",
+    "lint-staged": "^13.2.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "normalize-text": "^2.4.1",

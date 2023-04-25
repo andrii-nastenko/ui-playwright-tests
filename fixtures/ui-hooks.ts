@@ -4,17 +4,18 @@ import {BaseClass} from 'src/ui/base-class';
 const test = base.extend<{globalHooks}>({
   globalHooks: [
     async ({browser}, use, testInfo) => {
-      // 'beforeEach' global hook starts here
+      /** 'beforeEach' global hook starts here */
       for (const context of browser.contexts()) {
         await context.tracing.start({screenshots: true, snapshots: true});
         await context.tracing.startChunk({title: test.info().title});
         for (const page of context.pages()) {
-          // make pages load faster by skipping images and fonts downloading
-          await new BaseClass(page).stopRequest('**/*.{png,jpg,jpeg,webp,svg,gif}');
+          /** make pages load faster by skipping images and fonts downloading */
+          const baseClass = new BaseClass(page);
+          await baseClass.stopRequest('**/*.{png,jpg,jpeg,webp,svg,gif}');
         }
       }
       await use();
-      // 'afterEach' global hook starts here
+      /** 'afterEach' global hook starts here */
       for (const context of browser.contexts()) {
         if (testInfo.status === 'failed') {
           await context.tracing.stopChunk({

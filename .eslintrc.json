@@ -36,9 +36,12 @@
     "@typescript-eslint/no-invalid-void-type": "off",
     "@typescript-eslint/no-extraneous-class": "off",
     "prettier/prettier": [
-      "off",
+      "error",
       {
         "endOfLine": "auto"
+      },
+      {
+        "usePrettierrc": true
       }
     ],
     "quotes": [
