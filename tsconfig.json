@@ -1,22 +1,18 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "isolatedModules": true,
-    "moduleResolution": "node",
     "strict": true,
-    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
     "pretty": true,
-    "target": "ES6",
-    "module": "CommonJS",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "skipDefaultLibCheck": true,
-    "esModuleInterop": true,
+    "skipLibCheck": true,
     "baseUrl": "./",
     "rootDir": "./",
     "paths": {
@@ -25,7 +21,6 @@
       ]
     }
   },
-  "compileOnSave": true,
   "include": [
     "**/*.ts"
   ],

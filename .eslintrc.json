@@ -1,6 +1,7 @@
 {
   "env": {
-    "es2021": true,
+    "es2022": true,
+    "browser": true,
     "node": true
   },
   "extends": [
@@ -14,7 +15,6 @@
   "settings": {
     "json/json-with-comments-files": []
   },
-  "overrides": [],
   "ignorePatterns": [
     "node_modules",
     "package-lock.json"
@@ -25,16 +25,13 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/promise-function-async": "off",
     "@typescript-eslint/lines-between-class-members": "off",
-    "@typescript-eslint/no-useless-constructor": "off",
-    "@typescript-eslint/consistent-indexed-object-style": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/prefer-ts-expect-error": "off",
-    "@typescript-eslint/no-invalid-void-type": "off",
-    "@typescript-eslint/no-extraneous-class": "off",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/no-floating-promises": "error",
     "prettier/prettier": [
       "error",
       {
@@ -44,14 +41,6 @@
         "printWidth": 90,
         "tabWidth": 2
       }
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "object-curly-spacing": [
-      "error",
-      "never"
     ]
   }
 }

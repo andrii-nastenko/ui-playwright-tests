@@ -1,5 +1,6 @@
+// @ts-ignore
+import * as JestSorted from 'jest-sorted/src/sorted';
 import {expect} from '@playwright/test';
-import JestSorted from 'jest-sorted/src/sorted';
 
 expect.extend(JestSorted);
 

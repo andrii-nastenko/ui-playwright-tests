@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "tests",
   "scripts": {
-    "install-drivers": "playwright install",
+    "install-browsers": "playwright install chromium",
     "lint:check": "eslint . --ext .js,.ts,.json",
     "lint:fix": "eslint . --ext .js,.ts,.json --fix",
     "packages:check-updates": "npm-check-updates",

@@ -2,9 +2,7 @@ import {type JestSortedTypes} from 'config/matchers';
 
 declare global {
   namespace NodeJS {
-    interface ProcessEnv {
-      [key: string]: string;
-    }
+    type ProcessEnv = Record<string, string>;
   }
   namespace PlaywrightTest {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
