@@ -38,10 +38,11 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto"
-      },
-      {
-        "usePrettierrc": true
+        "endOfLine": "auto",
+        "bracketSpacing": false,
+        "singleQuote": true,
+        "printWidth": 90,
+        "tabWidth": 2
       }
     ],
     "quotes": [
