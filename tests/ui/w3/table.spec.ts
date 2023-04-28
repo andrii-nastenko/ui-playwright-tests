@@ -31,16 +31,16 @@ test.describe('Table:', () => {
   test('Check table sorting', async () => {
     await table.sortColumn({columnTitle: 'First Name', sortOrder: 'ascending'});
 
-    expect(await table.getColumnSortingState('First Name')).toEqual('ascending');
-    expect(await table.getColumnTextContents('First Name')).toBeSorted({
+    expect.soft(await table.getColumnSortingState('First Name')).toEqual('ascending');
+    expect.soft(await table.getColumnTextContents('First Name')).toBeSorted({
       descending: false,
       coerce: true,
     });
 
     await table.sortColumn({columnTitle: 'First Name', sortOrder: 'descending'});
 
-    expect(await table.getColumnSortingState('First Name')).toEqual('descending');
-    expect(await table.getColumnTextContents('First Name')).toBeSorted({
+    expect.soft(await table.getColumnSortingState('First Name')).toEqual('descending');
+    expect.soft(await table.getColumnTextContents('First Name')).toBeSorted({
       descending: true,
       coerce: true,
     });
