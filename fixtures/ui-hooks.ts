@@ -1,7 +1,8 @@
 import {test as base} from '@playwright/test';
 import {BaseClass} from 'src/ui/base-class';
 
-const test = base.extend<{globalHooks}>({
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+const test = base.extend<{globalHooks: void}>({
   globalHooks: [
     async ({browser}, use, testInfo) => {
       /** 'beforeEach' global hook starts here */

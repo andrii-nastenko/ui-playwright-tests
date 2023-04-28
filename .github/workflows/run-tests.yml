@@ -27,6 +27,6 @@ jobs:
       - name: install packages
         run: npm ci
       - name: install browsers
-        run: npm run install-drivers
+        run: npm run install-browsers
       - name: run tests
         run: npm run test:ui
