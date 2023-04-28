@@ -19,11 +19,17 @@ test.describe('Perform google search:', () => {
     const word = DataGenerator.generateWord();
     await homePage.enterSearchText(word);
 
-    await expect(homePage.searchSuggestionsSection()).toBeVisible();
+    await expect(
+      homePage.searchSuggestionsSection(),
+      'expect search suggestions sections to be visible'
+    ).toBeVisible();
 
     await homePage.startSearch();
 
-    await expect(searchResultsPage.searchResultsSection()).toBeVisible();
+    await expect(
+      searchResultsPage.searchResultsSection(),
+      'expect search results sections to be visible'
+    ).toBeVisible();
     expect(await searchResultsPage.results(word).count()).toBeGreaterThanOrEqual(1);
   });
 });
