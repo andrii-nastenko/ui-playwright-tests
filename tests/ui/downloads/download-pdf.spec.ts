@@ -9,7 +9,7 @@ test.describe('Downloads:', () => {
 
   test.beforeEach(async ({page}) => {
     downloadPage = new DownloadPage(page);
-    await page.goto(filesURL);
+    await page.goto(filesURL, {waitUntil: 'load'});
   });
 
   test('Download pdf and check its content', async () => {

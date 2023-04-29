@@ -4,11 +4,11 @@
   "description": "tests",
   "scripts": {
     "install-browsers": "playwright install chromium",
+    "install-git-hooks": "husky install",
     "lint:check": "eslint . --ext .js,.ts,.json",
     "lint:fix": "eslint . --ext .js,.ts,.json --fix",
     "packages:check-updates": "npm-check-updates",
     "packages:update": "ncu -u && npm i",
-    "prepare": "husky install",
     "test:ui": "playwright test -c ./config/ui.playwright.config.ts",
     "type-check": "tsc --noEmit"
   },
