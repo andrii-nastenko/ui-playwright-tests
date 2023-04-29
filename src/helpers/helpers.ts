@@ -21,11 +21,11 @@ export function getTextFromFile(fileName: string, paths = 'assets'): string {
 export function removeInvisibleChars(text: string): string {
   return normalizeText(text.replace(/[^ -~]+/g, ''));
 }
-export async function parsePdf(data: Buffer): Promise<PDFExtractResult> {
-  return await new PDFExtract().extractBuffer(data);
+export function parsePdf(data: Buffer): Promise<PDFExtractResult> {
+  return new PDFExtract().extractBuffer(data);
 }
-export async function streamToBuffer(stream: Readable): Promise<Buffer> {
-  return await new Promise<Buffer>((resolve) => {
+export function streamToBuffer(stream: Readable): Promise<Buffer> {
+  return new Promise<Buffer>((resolve) => {
     const _buf = Array<any>();
     stream.on('data', (chunk) => _buf.push(chunk));
     stream.on('end', () => {
