@@ -15,8 +15,12 @@ export function getLocalUserName(): string {
 export function getOS(): NodeJS.Platform {
   return system.platform();
 }
-export function getTextFromFile(fileName: string, paths = 'assets'): string {
-  return fs.readFileSync(path.resolve(paths, fileName)).toString();
+export function parseFile(
+  fileName: string,
+  filePath = 'assets',
+  returnType: BufferEncoding = 'utf8'
+): string {
+  return fs.readFileSync(path.resolve(filePath, fileName), returnType);
 }
 export function removeInvisibleChars(text: string): string {
   return normalizeText(text.replace(/[^ -~]+/g, ''));

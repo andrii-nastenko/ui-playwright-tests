@@ -11,8 +11,8 @@ class Table extends BaseClass {
     this.column(columnTitle).locator('//ancestor::th');
   columnItems = (columnNumber: number): Locator =>
     this.table().locator(`//tbody//td[${columnNumber}]`);
-  async getColumnHeader(): Promise<string[]> {
-    return await this.columns()
+  getColumnHeader(): Promise<string[]> {
+    return this.columns()
       .allTextContents()
       .then((columns) => columns.map((title) => title.trim()));
   }
@@ -29,7 +29,7 @@ class Table extends BaseClass {
     const columnNumber = await this.getColumnHeader().then(
       (columns) => columns.findIndex((column) => column === columnTitle) + 1
     );
-    return await this.columnItems(columnNumber).allTextContents();
+    return this.columnItems(columnNumber).allTextContents();
   }
 }
 
