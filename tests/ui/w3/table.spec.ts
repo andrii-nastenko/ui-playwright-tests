@@ -1,12 +1,14 @@
-import {expect} from '@playwright/test';
+import {expect, type Page} from '@playwright/test';
 import {Table} from 'src/ui/components/table';
-import {test} from 'fixtures/ui-hooks';
+import {test} from 'src/helpers/fixtures';
 
 test.describe('Table:', () => {
   const homeURL = process.env.TABLE_URL;
+  let page: Page;
   let table: Table;
 
-  test.beforeEach(async ({page}) => {
+  test.beforeAll(async ({browser}) => {
+    page = await browser.newPage();
     table = new Table(page);
     await page.goto(homeURL);
     await table.table().waitFor({state: 'visible'});
