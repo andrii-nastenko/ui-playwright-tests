@@ -1,7 +1,7 @@
 import {expect} from '@playwright/test';
 import {HomePage} from 'src/ui/pages/google/home-page';
 import {SearchResultsPage} from 'src/ui/pages/google/search-results-page';
-import {test} from 'fixtures/ui-hooks';
+import {test} from 'src/helpers/fixtures';
 import {generateWord} from 'src/helpers/data-generator';
 
 test.describe('Perform google search:', () => {
@@ -9,7 +9,8 @@ test.describe('Perform google search:', () => {
   let homePage: HomePage;
   let searchResultsPage: SearchResultsPage;
 
-  test.beforeEach(async ({page}) => {
+  test.beforeAll(async ({browser}) => {
+    const page = await browser.newPage();
     homePage = new HomePage(page);
     searchResultsPage = new SearchResultsPage(page);
     await page.goto(homeURL);
