@@ -1,5 +1,5 @@
 import * as system from 'os';
-import fs from 'fs';
+import {readFileSync, writeFileSync} from 'fs';
 import path from 'path';
 import {normalizeText} from 'normalize-text';
 import moment from 'moment';
@@ -16,8 +16,24 @@ export function getLocalUserName(): string {
 export function getOS(): NodeJS.Platform {
   return system.platform();
 }
+export function cleanJsonFile(fileName: string, relativeFilePath = 'assets'): void {
+  writeFileSync(path.resolve(relativeFilePath, fileName), JSON.stringify({}, null, 2));
+}
+export function readDataFromJsonFile(
+  fileName: string,
+  relativeFilePath = 'assets'
+): unknown {
+  return JSON.parse(readFileSync(path.resolve(relativeFilePath, fileName)).toString());
+}
+export function writeTempCredentialsJSONFile(
+  data: unknown,
+  fileName: string,
+  relativeFilePath = 'assets'
+): void {
+  writeFileSync(path.resolve(relativeFilePath, fileName), JSON.stringify(data, null, 2));
+}
 export function getTextFromFile(fileName: string, relativeFilePath = 'assets'): string {
-  return fs.readFileSync(path.resolve(relativeFilePath, fileName), {encoding: 'utf8'});
+  return readFileSync(path.resolve(relativeFilePath, fileName), {encoding: 'utf8'});
 }
 /**
  * Get Base64 body or data URI (optional) of the file
@@ -32,7 +48,7 @@ export function getBase64FromFile(
   getURI?: boolean
 ): string {
   const fullPath = path.resolve(relativeFilePath, fileName);
-  const base64 = fs.readFileSync(fullPath, {encoding: 'base64url'});
+  const base64 = readFileSync(fullPath, {encoding: 'base64url'});
   const mimeType = lookup(fullPath);
   if (mimeType && getURI) {
     return `data:${mimeType};base64,${base64}`;
