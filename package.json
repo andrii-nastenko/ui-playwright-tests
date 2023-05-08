@@ -39,6 +39,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.3",
-    "npm-check-updates": "^16.10.9"
+    "npm-check-updates": "^16.10.10"
   }
 }
