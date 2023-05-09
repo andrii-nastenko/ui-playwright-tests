@@ -22,10 +22,10 @@ export function cleanJsonFile(fileName: string, relativeFilePath = 'assets'): vo
 export function readDataFromJsonFile(
   fileName: string,
   relativeFilePath = 'assets'
-): unknown {
+): Record<string, unknown> {
   return JSON.parse(readFileSync(path.resolve(relativeFilePath, fileName)).toString());
 }
-export function writeTempCredentialsJSONFile(
+export function writeDataToJSONFile(
   data: unknown,
   fileName: string,
   relativeFilePath = 'assets'
