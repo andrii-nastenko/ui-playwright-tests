@@ -1,6 +1,6 @@
 import {DownloadPage} from 'src/ui/pages/groupdocs/download-page';
 import {expect} from '@playwright/test';
-import {test} from 'src/helpers/fixtures';
+import {test} from 'src/fixtures/base';
 import {parsePdf} from 'src/helpers/helpers';
 
 test.describe('Downloads:', () => {

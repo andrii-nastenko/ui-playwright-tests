@@ -1,6 +1,6 @@
 import {expect, type Page} from '@playwright/test';
 import {Table} from 'src/ui/components/table';
-import {test} from 'src/helpers/fixtures';
+import {test} from 'src/fixtures/base';
 
 test.describe('Table:', () => {
   const homeURL = process.env.TABLE_URL;

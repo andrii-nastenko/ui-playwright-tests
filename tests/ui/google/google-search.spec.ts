@@ -1,7 +1,7 @@
 import {expect} from '@playwright/test';
 import {HomePage} from 'src/ui/pages/google/home-page';
 import {SearchResultsPage} from 'src/ui/pages/google/search-results-page';
-import {test} from 'src/helpers/fixtures';
+import {test} from 'src/fixtures/base';
 import {generateWord} from 'src/helpers/data-generator';
 
 test.describe('Perform google search:', () => {
