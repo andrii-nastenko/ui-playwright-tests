@@ -1,14 +1,12 @@
-import {DownloadPage} from 'src/ui/pages/groupdocs/download-page';
-import {expect} from '@playwright/test';
-import {test} from 'src/fixtures/base';
-import {parsePdf} from 'src/helpers/helpers';
+import {DownloadPage} from 'src/ui/pages/group-docs/download-page';
+import {test, expect} from 'src/fixtures/base';
+import {parsePdf} from 'src/helpers/misc';
 
 test.describe('Downloads:', () => {
   const filesURL = process.env.FILES_PAGE_URL;
   let downloadPage: DownloadPage;
 
-  test.beforeAll(async ({browser}) => {
-    const page = await browser.newPage();
+  test.beforeEach(async ({page}) => {
     downloadPage = new DownloadPage(page);
     await page.goto(filesURL, {waitUntil: 'load'});
   });

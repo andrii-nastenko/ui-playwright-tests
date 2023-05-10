@@ -1,12 +1,17 @@
 import {test as base} from '@playwright/test';
-import {type SkipDownloadFixture, skipDownloadFixture} from 'src/fixtures/skip-download';
+import {
+  type SkipDownloadingFixture,
+  skipDownloadFixture,
+} from 'src/fixtures/skip-downloading';
 import {type TracesFixture, tracesFixture} from 'src/fixtures/traces';
 import {type TrelloFixture, trelloFixture} from 'src/fixtures/trello';
 
-const test = base.extend<TrelloFixture & SkipDownloadFixture & TracesFixture>({
+/** test instance with fixtures */
+const test = base.extend<TrelloFixture & SkipDownloadingFixture & TracesFixture>({
   ...skipDownloadFixture,
   ...tracesFixture,
   ...trelloFixture,
 });
 
 export {test};
+export * from '@playwright/test';

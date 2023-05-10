@@ -1,5 +1,4 @@
 import {type test} from '@playwright/test';
-import {BaseClass} from 'src/ui/base-class';
 
 export interface TracesFixture {
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
@@ -7,6 +6,7 @@ export interface TracesFixture {
 }
 type TracesFixtureExtended = Parameters<typeof test.extend<TracesFixture>>;
 
+/** save traces and screenshot for failed tests */
 const tracesFixture: TracesFixtureExtended[0] = {
   traces: [
     async ({browser}, use, testInfo) => {
@@ -14,11 +14,6 @@ const tracesFixture: TracesFixtureExtended[0] = {
       for (const context of browser.contexts()) {
         await context.tracing.start({screenshots: true, snapshots: true});
         await context.tracing.startChunk({title: testInfo.title});
-        for (const page of context.pages()) {
-          /** make pages load faster by skipping images and fonts downloading */
-          const baseClass = new BaseClass(page);
-          await baseClass.stopRequest('**/*.{png,jpg,jpeg,webp,svg,gif}');
-        }
       }
       await use();
       /** 'afterEach' global hook starts here */

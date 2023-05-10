@@ -1,16 +1,14 @@
-import {expect} from '@playwright/test';
 import {HomePage} from 'src/ui/pages/google/home-page';
 import {SearchResultsPage} from 'src/ui/pages/google/search-results-page';
-import {test} from 'src/fixtures/base';
-import {generateWord} from 'src/helpers/data-generator';
+import {test, expect} from 'src/fixtures/base';
+import {generateWord} from 'src/helpers/generate-data';
 
-test.describe('Perform google search:', () => {
+test.describe('Search:', () => {
   const homeURL = process.env.GOOGLE_URL;
   let homePage: HomePage;
   let searchResultsPage: SearchResultsPage;
 
-  test.beforeAll(async ({browser}) => {
-    const page = await browser.newPage();
+  test.beforeEach(async ({page}) => {
     homePage = new HomePage(page);
     searchResultsPage = new SearchResultsPage(page);
     await page.goto(homeURL);

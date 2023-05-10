@@ -1,6 +1,6 @@
 import {type Download, type Locator, type Page} from '@playwright/test';
 import {type ActionType} from 'src/ui/types/base-class-types';
-import {streamToBuffer} from 'src/helpers/helpers';
+import {streamToBuffer} from 'src/helpers/misc';
 
 /** General custom page methods */
 class BaseClass {
