@@ -1,4 +1,5 @@
-import {test, expect} from 'src/fixtures/base';
+import {test} from 'src/fixtures/base';
+import {expect} from '@playwright/test';
 
 test.describe('Trello header menu:', () => {
   const homePageURL = process.env.TRELLO_URL;

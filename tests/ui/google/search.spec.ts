@@ -1,7 +1,8 @@
 import {HomePage} from 'src/ui/pages/google/home-page';
 import {SearchResultsPage} from 'src/ui/pages/google/search-results-page';
-import {test, expect} from 'src/fixtures/base';
+import {test} from 'src/fixtures/base';
 import {generateWord} from 'src/helpers/generate-data';
+import {expect} from '@playwright/test';
 
 test.describe('Search:', () => {
   const homeURL = process.env.GOOGLE_URL;

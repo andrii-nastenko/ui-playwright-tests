@@ -1,4 +1,4 @@
-import {readFileSync, writeFileSync} from 'fs';
+import {existsSync, readFileSync, writeFileSync} from 'fs';
 import path from 'path';
 import {lookup} from 'mime-types';
 
@@ -40,4 +40,8 @@ export function getBase64FromFile(
     return `data:${mimeType};base64,${base64}`;
   }
   return base64;
+}
+export function checkFileExists(fileName: string, relativeFilePath: string): boolean {
+  const fullPath = path.resolve(relativeFilePath, fileName);
+  return existsSync(fullPath);
 }

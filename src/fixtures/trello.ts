@@ -27,6 +27,7 @@ const trelloFixture: TrelloFixtureExtended[0] = {
     await page
       .context()
       .addCookies(readDataFromJsonFile('trello.json', 'setup/auth').cookies as []);
+    // TODO: delete trello.json after worker is finished
     await use({page, loginPage, header});
   },
 };

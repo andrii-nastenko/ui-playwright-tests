@@ -1,5 +1,6 @@
 import {Table} from 'src/ui/components/table';
-import {test, expect} from 'src/fixtures/base';
+import {test} from 'src/fixtures/base';
+import {expect} from '@playwright/test';
 
 test.describe('Table:', () => {
   const homeURL = process.env.TABLE_URL;
@@ -19,6 +20,17 @@ test.describe('Table:', () => {
       'Address',
       'Favorite Number',
     ]);
+  });
+
+  test('Check column Last Name has sorting ascending icon', async () => {
+    expect(
+      await table
+        .column('Last Name')
+        .locator('//*')
+        .evaluate((el) =>
+          window.getComputedStyle(el, '::after').getPropertyValue('content')
+        )
+    ).toEqual('"▲"');
   });
 
   test('Check First Name column content', async () => {

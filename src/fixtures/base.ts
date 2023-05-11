@@ -14,4 +14,3 @@ const test = base.extend<TrelloFixture & SkipDownloadingFixture & TracesFixture>
 });
 
 export {test};
-export * from '@playwright/test';

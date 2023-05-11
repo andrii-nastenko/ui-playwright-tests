@@ -3,6 +3,7 @@ import {normalizeText} from 'normalize-text';
 import {PDFExtract, type PDFExtractResult} from 'pdf.js-extract';
 import {type Readable} from 'stream';
 
+/** do not use wait unless there's no any workaround! */
 export async function wait(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }

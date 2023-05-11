@@ -1,6 +1,7 @@
 import {DownloadPage} from 'src/ui/pages/group-docs/download-page';
-import {test, expect} from 'src/fixtures/base';
+import {test} from 'src/fixtures/base';
 import {parsePdf} from 'src/helpers/misc';
+import {expect} from '@playwright/test';
 
 test.describe('Downloads:', () => {
   const filesURL = process.env.FILES_PAGE_URL;
