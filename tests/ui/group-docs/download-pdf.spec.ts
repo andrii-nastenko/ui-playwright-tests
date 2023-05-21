@@ -14,10 +14,14 @@ test.describe('Downloads:', () => {
 
   test('Download pdf and check its content', async () => {
     const downloadBtn = downloadPage.downloadBtn();
-    const [, buffer] = await downloadPage.downloadFile(downloadBtn);
+    const [download, buffer] = await downloadPage.downloadFile(downloadBtn);
     const pdfText = await parsePdf(buffer).then(({pages}) =>
       pages.map((page) => page.content.map(({str}) => str).toString()).join()
     );
+    expect(await download.path()).not.toBeNull();
+    expect(await download.createReadStream()).not.toBeNull();
+    expect(download.url()).toContain('download?format=format-pdf&count=3');
+    expect(download.suggestedFilename()).toMatch(/^lorem-ipsum-.*pdf$/);
     expect(pdfText).toContain('lorem');
   });
 });
