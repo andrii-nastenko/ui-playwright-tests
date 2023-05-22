@@ -6,3 +6,4 @@ node_modules
 traces
 screenshots
 setup/auth
+.env.example
